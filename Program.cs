@@ -4,6 +4,14 @@ Console.WriteLine("Copyright (c) 2024 Strahlemann-lab");
 string MachineName = Environment.MachineName;
 Console.WriteLine("On Computer: " + MachineName + "\n");
 
+string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+string folderName = "SecretAlphabets";
+string folderPath = Path.Combine(currentDirectory, folderName);
+if (!Directory.Exists(folderPath))
+{
+    Directory.CreateDirectory(folderPath);
+}
+
 CommandHandler commandHandler = new CommandHandler();
 
 // Commands registrieren
