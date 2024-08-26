@@ -9,11 +9,33 @@ public class CommandHandler
         commands[commandName] = command;
     }
 
-    public void HandleCommand(string commandName)
+    public void HandleCommand(string input)
     {
+        string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length == 0)
+        {
+            Console.WriteLine("Fehler: Kein Befehl eingegeben.");
+            return;
+        }
+        string commandName = parts[0];
+        List<string> parameters = new List<string>();
         if (commands.ContainsKey(commandName))
         {
-            commands[commandName].Execute(context);
+            if (parts.Length > 1)
+            {
+                for (int i = 1; i < parts.Length; i++)
+                {
+                    if (!parts[i].StartsWith("-"))
+                    {
+                        Console.WriteLine($"Fehler: Parameter '{parts[i]}' muss mit '-' beginnen.");
+                        return;
+                    }
+                    parts[i] = parts[i].Substring(1);
+                    parameters.Add(parts[i]);
+                    
+                }
+            }
+            commands[commandName].Execute(context, parameters.ToArray());
         }
         else
         {
@@ -21,3 +43,7 @@ public class CommandHandler
         }
     }
 }
+
+
+
+// [CommandName] -[parameter] -[parameter] ...

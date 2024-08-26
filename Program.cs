@@ -15,6 +15,14 @@ if (!Directory.Exists(folderPath))
 CommandHandler commandHandler = new CommandHandler();
 
 // Commands registrieren
+commandHandler.RegisterCommand("create", new CreateCommand()); // Fehlend
+commandHandler.RegisterCommand("list", new ExitCommand()); // Fehlend
+commandHandler.RegisterCommand("select", new ExitCommand()); // Fehlend
+commandHandler.RegisterCommand("exit", new ExitCommand()); // Fehlend
+commandHandler.RegisterCommand("encode", new ExitCommand()); // Fehlend
+commandHandler.RegisterCommand("decode", new ExitCommand()); // Fehlend
+commandHandler.RegisterCommand("write.txt", new ExitCommand()); // Fehlend
+commandHandler.RegisterCommand("help", new ExitCommand()); // Fehlend
 commandHandler.RegisterCommand("exit", new ExitCommand());
 
 // Schleife zum Eingeben von Befehlen
