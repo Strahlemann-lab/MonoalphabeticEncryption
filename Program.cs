@@ -16,12 +16,13 @@ CommandHandler commandHandler = new CommandHandler();
 
 // Commands registrieren
 commandHandler.RegisterCommand("create", new CreateCommand()); // Fehlend
+commandHandler.RegisterCommand("delete", new DeleteCommand()); // Fehlend
 commandHandler.RegisterCommand("list", new ExitCommand()); // Fehlend
 commandHandler.RegisterCommand("select", new ExitCommand()); // Fehlend
-commandHandler.RegisterCommand("exit", new ExitCommand()); // Fehlend
 commandHandler.RegisterCommand("encode", new ExitCommand()); // Fehlend
 commandHandler.RegisterCommand("decode", new ExitCommand()); // Fehlend
 commandHandler.RegisterCommand("write.txt", new ExitCommand()); // Fehlend
+commandHandler.RegisterCommand("clear", new ClearCommand());
 commandHandler.RegisterCommand("help", new ExitCommand()); // Fehlend
 commandHandler.RegisterCommand("exit", new ExitCommand());
 
