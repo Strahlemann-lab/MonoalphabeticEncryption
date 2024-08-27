@@ -15,8 +15,8 @@ if (!Directory.Exists(folderPath))
 CommandHandler commandHandler = new CommandHandler();
 
 // Commands registrieren
-commandHandler.RegisterCommand("create", new CreateCommand()); // Fehlend
-commandHandler.RegisterCommand("delete", new DeleteCommand()); // Fehlend
+commandHandler.RegisterCommand("create", new CreateCommand());
+commandHandler.RegisterCommand("delete", new DeleteCommand());
 commandHandler.RegisterCommand("list", new ExitCommand()); // Fehlend
 commandHandler.RegisterCommand("select", new ExitCommand()); // Fehlend
 commandHandler.RegisterCommand("encode", new ExitCommand()); // Fehlend
