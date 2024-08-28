@@ -1,15 +1,15 @@
 ﻿
 public class DeleteCommand : ICommand
 {
-    public void Execute(CommandContext Null, string[] parameters)
+    public void Execute(CommandContext context, string[] parameters)
     {
         if (parameters.Length == 0)
         {
-            Console.WriteLine("Error: No parameter was passed. Syntax: delete -fileName");
+            Console.WriteLine("Error: No parameter was passed. Syntax: delete -alphabetName");
             return;
         }
         string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        string folderName = "SecretAlphabets";
+        string folderName = "Alphabets";
         string dataName = parameters[0] + ".json";
         string filePath = Path.Combine(currentDirectory, folderName, dataName);
         if (File.Exists(filePath))

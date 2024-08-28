@@ -1,6 +1,6 @@
 ﻿public class ExitCommand : ICommand
 {
-    public void Execute(CommandContext Null, string[] parameters)
+    public void Execute(CommandContext context, string[] parameters)
     {
         Console.WriteLine("Exiting...");
         Console.WriteLine("Press any button to close...");

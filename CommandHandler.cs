@@ -27,7 +27,7 @@ public class CommandHandler
                 {
                     if (!parts[i].StartsWith("-"))
                     {
-                        Console.WriteLine($"Fehler: Parameter '{parts[i]}' muss mit '-' beginnen.");
+                        Console.WriteLine($"Error: Parameter '{parts[i]}' must start with '-'.");
                         return;
                     }
                     parts[i] = parts[i].Substring(1);

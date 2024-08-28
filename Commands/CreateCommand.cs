@@ -3,15 +3,15 @@ using System.Text.Json;
 
 public class CreateCommand : ICommand
 {
-    public void Execute(CommandContext Null, string[] parameters)
+    public void Execute(CommandContext context, string[] parameters)
     {
         if (parameters.Length == 0)
         {
-            Console.WriteLine("Error: No parameter was passed. Syntax: create -fileName");
+            Console.WriteLine("Error: No parameter was passed. Syntax: create -alphabetName");
             return;
         }
         Dictionary<char, char> dictAlphabet = new Dictionary<char, char>();
-        for (char c = 'A'; c <= 'Z'; c++)
+        for (char c = 'a'; c <= 'z'; c++)
         {
             dictAlphabet.Add(c, '#');
         }
@@ -62,7 +62,7 @@ public class CreateCommand : ICommand
         JsonSerializerOptions options = new JsonSerializerOptions {WriteIndented = true};
         string json = JsonSerializer.Serialize(dictAlphabet, options);
         string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        string folderName = "SecretAlphabets";
+        string folderName = "Alphabets";
         string dataName = parameters[0] + ".json";
         string folderPath = Path.Combine(currentDirectory, folderName, dataName);
         File.WriteAllText(folderPath, json);
