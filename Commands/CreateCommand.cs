@@ -69,60 +69,72 @@ public class CreateCommand : ICommand
                     Console.Write("spacebar = ");
                     string userImput = Console.ReadLine();
                     int i = userImput.Length;
-                    if (dictAlphabet.ContainsValue(userImput[0]))
+                    try
                     {
-                        Console.WriteLine("Error: '" + userImput + "' contains an already defined character");
-                    }
-                    else
-                    {
-                        if (i == 1)
+                        if (dictAlphabet.ContainsValue(userImput[0]))
                         {
-                            dictAlphabet[c] = userImput[0];
-                            Console.WriteLine("------");
-                            break;
+                            Console.WriteLine("Error: '" + userImput + "' contains an already defined character");
                         }
-                        else { Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1"); }
+                        else
+                        {
+                            if (i == 1)
+                            {
+                                dictAlphabet[c] = userImput[0];
+                                Console.WriteLine("------");
+                                break;
+                            }
+                            else { Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1"); }
+                        }
                     }
+                    catch (Exception ex) { }
                 }
                 if(char.IsUpper(c))
                 {
                     Console.Write("filler = ");
                     string userImput = Console.ReadLine();
                     int i = userImput.Length;
-                    if (dictAlphabet.ContainsValue(userImput[0]))
+                    try
                     {
-                        Console.WriteLine("Error: '" + userImput + "' contains an already defined character");
-                    }
-                    else
-                    {
-                        if (i == 1)
+                        if (dictAlphabet.ContainsValue(userImput[0]))
                         {
-                            dictAlphabet[c] = userImput[0];
-                            Console.WriteLine("------");
-                            break;
+                            Console.WriteLine("Error: '" + userImput + "' contains an already defined character");
                         }
-                        else { Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1"); }
+                        else
+                        {
+                            if (i == 1)
+                            {
+                                dictAlphabet[c] = userImput[0];
+                                Console.WriteLine("------");
+                                break;
+                            }
+                            else { Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1"); }
+                        }
                     }
+                    catch (Exception ex) { }
                 }
                 else
                 {
                     Console.Write($"{c} = ");
                     string userImput = Console.ReadLine();
                     int i = userImput.Length;
-                    if (dictAlphabet.ContainsValue(userImput[0]))
+                    try
                     {
-                        Console.WriteLine("Error: '" + userImput + "' contains an already defined character");
-                    }
-                    else
-                    {
-                        if (i == 1)
+                        if (dictAlphabet.ContainsValue(userImput[0]))
                         {
-                            dictAlphabet[c] = userImput[0];
-                            Console.WriteLine("------");
-                            break;
+                            Console.WriteLine("Error: '" + userImput + "' contains an already defined character");
                         }
-                        else { Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1"); }
+                        else
+                        {
+                            if (i == 1)
+                            {
+                                dictAlphabet[c] = userImput[0];
+                                Console.WriteLine("------");
+                                break;
+                            }
+                            else { Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1"); }
+                        }
                     }
+                    catch (Exception ex) { }
                 }
             }
             

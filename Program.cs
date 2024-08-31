@@ -1,7 +1,7 @@
 ﻿
 using System.ComponentModel;
 
-Console.WriteLine("\nMonoalphabeticEncryption - Version 1.0.2\n");
+Console.WriteLine("\nMonoalphabeticEncryption - Version 1.0.3\n");
 Console.WriteLine("Copyright (c) 2024 Strahlemann-lab");
 string MachineName = Environment.MachineName;
 Console.WriteLine("On Computer: " + MachineName + "\n");
@@ -35,3 +35,4 @@ while (true)
     string input = Console.ReadLine();
     commandHandler.HandleCommand(input);
 }
+ 

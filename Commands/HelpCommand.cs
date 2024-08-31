@@ -8,7 +8,7 @@ public class HelpCommand : ICommand
     public void Execute(CommandContext context, string[] parameters)
     {
         Console.WriteLine("-----------------------------------------------------------------------------------------------------------");
-        Console.WriteLine("MonoalphabeticEncryption - Version 1.0.2");
+        Console.WriteLine("MonoalphabeticEncryption - Version 1.0.3");
         Console.WriteLine("Copyright (c) 2024 Strahlemann-lab");
         Console.WriteLine("");
         Console.WriteLine("General command syntax = command -argument -parameter");
