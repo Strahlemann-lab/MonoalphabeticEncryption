@@ -25,7 +25,7 @@ commandHandler.RegisterCommand("encrypt", new EncryptCommand());
 commandHandler.RegisterCommand("decrypt", new DecryptCommand());
 commandHandler.RegisterCommand("write", new WriteTXTCommand());
 commandHandler.RegisterCommand("clear", new ClearCommand());
-commandHandler.RegisterCommand("help", new HelpCommand()); // Fehlend
+commandHandler.RegisterCommand("help", new HelpCommand()); 
 commandHandler.RegisterCommand("exit", new ExitCommand());
 
 // Schleife zum Eingeben von Befehlen
