@@ -10,7 +10,7 @@ public class SelectCommand : ICommand
             return;
         }
         string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        string folderName = "Alphabets";
+        string folderName = "alphabets";
         string dataName = parameters[0] + ".json";
         string filePath = Path.Combine(currentDirectory, folderName, dataName);
         if (File.Exists(filePath))
@@ -22,6 +22,7 @@ public class SelectCommand : ICommand
                 string jsonString = File.ReadAllText(filePath);
                 Dictionary<char, char> DictAlphabet = JsonSerializer.Deserialize<Dictionary<char, char>>(jsonString);
                 context.SharedDictAlphabet = DictAlphabet;
+                context.SharedDictName = parameters[0];
                 
 
             }

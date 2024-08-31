@@ -1,5 +1,7 @@
-﻿using System.Reflection.Metadata;
+﻿using System.ComponentModel;
+using System.Reflection.Metadata;
 using System.Text.Json;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class CreateCommand : ICommand
 {
@@ -7,9 +9,31 @@ public class CreateCommand : ICommand
     {
         if (parameters.Length == 0)
         {
-            Console.WriteLine("Error: No parameter was passed. Syntax: create -alphabetName");
+            Console.WriteLine("Error: No parameter was passed. Syntax: create -alphabetName -howManyFillers");
             return;
         }
+        int? howManyFillers = null;
+        if (parameters.Length >= 2)
+        {
+            try
+            {
+                while(true)
+                {
+                    howManyFillers = int.Parse(parameters[1]);
+                    if (howManyFillers < 26) { break; }
+                    Console.WriteLine("System limitation: too many fillers. please smaller than 26");
+                    
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: An unexpected error occurred while passing " + parameters[1].ToString() + ": " + ex.ToString());
+                return;
+            }
+            
+        }
+
         Dictionary<char, char> dictAlphabet = new Dictionary<char, char>();
         for (char c = 'a'; c <= 'z'; c++)
         {
@@ -18,12 +42,22 @@ public class CreateCommand : ICommand
         dictAlphabet.Add('ä', '#');
         dictAlphabet.Add('ü', '#');
         dictAlphabet.Add('ö', '#');
+        dictAlphabet.Add('ß', '#');
         dictAlphabet.Add('.', '#');
         dictAlphabet.Add(',', '#');
         dictAlphabet.Add('-', '#');
         dictAlphabet.Add('?', '#');
         dictAlphabet.Add('!', '#');
         dictAlphabet.Add(' ', '#');
+        if (howManyFillers != null)
+        {
+            char c = 'A';
+            for (int i = 1; i <= howManyFillers; i++)
+            {
+                dictAlphabet.Add(c,'#');
+                c++;
+            }
+        }
         Console.WriteLine("Please determine all values of the alphabet: '" + parameters[0] + "'\n");
         foreach (char c in dictAlphabet.Keys)
         {
@@ -35,26 +69,60 @@ public class CreateCommand : ICommand
                     Console.Write("spacebar = ");
                     string userImput = Console.ReadLine();
                     int i = userImput.Length;
-                    if (i == 1)
+                    if (dictAlphabet.ContainsValue(userImput[0]))
                     {
-                        dictAlphabet[c] = userImput[0];
-                        Console.WriteLine("------");
-                        break;
+                        Console.WriteLine("Error: '" + userImput + "' contains an already defined character");
                     }
-                    Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1");
+                    else
+                    {
+                        if (i == 1)
+                        {
+                            dictAlphabet[c] = userImput[0];
+                            Console.WriteLine("------");
+                            break;
+                        }
+                        else { Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1"); }
+                    }
+                }
+                if(char.IsUpper(c))
+                {
+                    Console.Write("filler = ");
+                    string userImput = Console.ReadLine();
+                    int i = userImput.Length;
+                    if (dictAlphabet.ContainsValue(userImput[0]))
+                    {
+                        Console.WriteLine("Error: '" + userImput + "' contains an already defined character");
+                    }
+                    else
+                    {
+                        if (i == 1)
+                        {
+                            dictAlphabet[c] = userImput[0];
+                            Console.WriteLine("------");
+                            break;
+                        }
+                        else { Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1"); }
+                    }
                 }
                 else
                 {
                     Console.Write($"{c} = ");
                     string userImput = Console.ReadLine();
                     int i = userImput.Length;
-                    if (i == 1)
+                    if (dictAlphabet.ContainsValue(userImput[0]))
                     {
-                        dictAlphabet[c] = userImput[0];
-                        Console.WriteLine("------");
-                        break;
+                        Console.WriteLine("Error: '" + userImput + "' contains an already defined character");
                     }
-                    Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1");
+                    else
+                    {
+                        if (i == 1)
+                        {
+                            dictAlphabet[c] = userImput[0];
+                            Console.WriteLine("------");
+                            break;
+                        }
+                        else { Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1"); }
+                    }
                 }
             }
             
@@ -62,7 +130,7 @@ public class CreateCommand : ICommand
         JsonSerializerOptions options = new JsonSerializerOptions {WriteIndented = true};
         string json = JsonSerializer.Serialize(dictAlphabet, options);
         string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        string folderName = "Alphabets";
+        string folderName = "alphabets";
         string dataName = parameters[0] + ".json";
         string folderPath = Path.Combine(currentDirectory, folderName, dataName);
         File.WriteAllText(folderPath, json);

@@ -9,7 +9,7 @@ public class DeleteCommand : ICommand
             return;
         }
         string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        string folderName = "Alphabets";
+        string folderName = "alphabets";
         string dataName = parameters[0] + ".json";
         string filePath = Path.Combine(currentDirectory, folderName, dataName);
         if (File.Exists(filePath))
