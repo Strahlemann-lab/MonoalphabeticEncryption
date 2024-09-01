@@ -41,7 +41,18 @@ public class DecryptCommand : ICommand
         }
         if (!AreAllCharsInDictionary(text, context.SharedDictAlphabet))
         {
-            Console.WriteLine("Error: Text contains characters that do not exist in the alphabet: " + context.SharedDictName);
+            StringBuilder erorr = new StringBuilder();
+            foreach (char ch in text)
+            {
+                string i = erorr.ToString();
+                if (i.Contains(ch))
+                { }
+                else
+                {
+                    erorr.Append("'" + ch.ToString() + " ");
+                }
+            }
+            Console.WriteLine($"Error: Text contains characters '{erorr}' that do not exist in the alphabet: " + context.SharedDictName);
             return;
         }
         Console.WriteLine("Decrypted with: " + context.SharedDictName);

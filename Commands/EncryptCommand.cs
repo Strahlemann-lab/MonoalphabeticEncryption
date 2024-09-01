@@ -36,7 +36,21 @@ public class EncryptCommand : ICommand
         }
         if (!AreAllCharsInDictionary(text,context.SharedDictAlphabet))
         {
-            Console.WriteLine("Error: Text contains characters that do not exist in the alphabet: " + context.SharedDictName);
+            StringBuilder erorr = new StringBuilder();
+            foreach (char ch in text)
+            {
+                if (!context.SharedDictAlphabet.ContainsKey(ch))
+                {
+                    string i = erorr.ToString();
+                    if (i.Contains(ch))
+                    { }
+                    else
+                    {
+                        erorr.Append("'" + ch.ToString() + " ");
+                    }
+                }
+            }
+            Console.WriteLine($"Error: Text contains characters ({erorr}) that do not exist in the alphabet: " + context.SharedDictName);
             return;
         }
         Console.WriteLine("\nEncrypted with: " + context.SharedDictName);
@@ -47,7 +61,7 @@ public class EncryptCommand : ICommand
         {
             if (char.IsUpper(lr))
             {
-                allFillerDict.Add(allFiller, lr);
+                allFillerDict.Add(allFiller, context.SharedDictAlphabet.GetValueOrDefault(lr));
                 allFiller++;
             }
         }
