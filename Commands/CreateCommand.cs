@@ -5,11 +5,12 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class CreateCommand : ICommand
 {
+    public ConColor ConColor = new ConColor();
     public void Execute(CommandContext context, string[] parameters)
     {
         if (parameters.Length == 0)
         {
-            Console.WriteLine("Error: No parameter was passed. Syntax: create -alphabetName -howManyFillers");
+            ConColor.WriteLine("Error: No parameter was passed. Syntax: create -alphabetName -howManyFillers", ConsoleColor.Red);
             return;
         }
         int? howManyFillers = null;
@@ -21,14 +22,14 @@ public class CreateCommand : ICommand
                 {
                     howManyFillers = int.Parse(parameters[1]);
                     if (howManyFillers < 26) { break; }
-                    Console.WriteLine("System limitation: too many fillers. please smaller than 26");
+                    ConColor.WriteLine("System limitation: too many fillers. please smaller than 26", ConsoleColor.Red);
                     
                 }
                 
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: An unexpected error occurred while passing " + parameters[1].ToString() + ": " + ex.ToString());
+                ConColor.WriteLine("Error: An unexpected error occurred while passing " + parameters[1].ToString() + ": " + ex.ToString(), ConsoleColor.Red);
                 return;
             }
             
@@ -58,7 +59,7 @@ public class CreateCommand : ICommand
                 c++;
             }
         }
-        Console.WriteLine("Please determine all values of the alphabet: '" + parameters[0] + "'\n");
+        ConColor.WriteLine("Please determine all values of the alphabet: '" + parameters[0] + "'\n", ConsoleColor.DarkYellow);
         foreach (char c in dictAlphabet.Keys)
         {
             while (true)
@@ -73,7 +74,7 @@ public class CreateCommand : ICommand
                     {
                         if (dictAlphabet.ContainsValue(userImput[0]))
                         {
-                            Console.WriteLine("Error: '" + userImput + "' contains an already defined character");
+                            ConColor.WriteLine("Error: '" + userImput + "' contains an already defined character", ConsoleColor.Red);
                         }
                         else
                         {
@@ -83,7 +84,7 @@ public class CreateCommand : ICommand
                                 Console.WriteLine("------");
                                 break;
                             }
-                            else { Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1"); }
+                            else { ConColor.WriteLine("Error: '" + userImput + "' contains no or more characters than 1", ConsoleColor.Red); }
                         }
                     }
                     catch (Exception ex) { }
@@ -97,7 +98,7 @@ public class CreateCommand : ICommand
                     {
                         if (dictAlphabet.ContainsValue(userImput[0]))
                         {
-                            Console.WriteLine("Error: '" + userImput + "' contains an already defined character");
+                            ConColor.WriteLine("Error: '" + userImput + "' contains an already defined character", ConsoleColor.Red);
                         }
                         else
                         {
@@ -107,7 +108,7 @@ public class CreateCommand : ICommand
                                 Console.WriteLine("------");
                                 break;
                             }
-                            else { Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1"); }
+                            else { ConColor.WriteLine("Error: '" + userImput + "' contains no or more characters than 1", ConsoleColor.Red); }
                         }
                     }
                     catch (Exception ex) { }
@@ -121,7 +122,7 @@ public class CreateCommand : ICommand
                     {
                         if (dictAlphabet.ContainsValue(userImput[0]))
                         {
-                            Console.WriteLine("Error: '" + userImput + "' contains an already defined character");
+                            ConColor.WriteLine("Error: '" + userImput + "' contains an already defined character", ConsoleColor.Red);
                         }
                         else
                         {
@@ -131,7 +132,7 @@ public class CreateCommand : ICommand
                                 Console.WriteLine("------");
                                 break;
                             }
-                            else { Console.WriteLine("Error: '" + userImput + "' contains no or more characters than 1"); }
+                            else { ConColor.WriteLine("Error: '" + userImput + "' contains no or more characters than 1", ConsoleColor.Red); }
                         }
                     }
                     catch (Exception ex) { }
@@ -146,7 +147,7 @@ public class CreateCommand : ICommand
         string dataName = parameters[0] + ".json";
         string folderPath = Path.Combine(currentDirectory, folderName, dataName);
         File.WriteAllText(folderPath, json);
-        Console.WriteLine(parameters[0] + " was saved.");
+        ConColor.WriteLine(parameters[0] + " was saved.", ConsoleColor.DarkGreen);
 
     }
 }

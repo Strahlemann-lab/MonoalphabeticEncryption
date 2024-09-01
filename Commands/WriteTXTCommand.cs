@@ -3,6 +3,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 public class WriteTXTCommand : ICommand
 {
+    public ConColor ConColor = new ConColor();
     static string lineBreak(string text, int charactersProLine)
     {
         StringBuilder ergebnis = new StringBuilder();
@@ -52,7 +53,7 @@ public class WriteTXTCommand : ICommand
     {
         if (parameters.Length == 0)
         {
-            Console.WriteLine("Error: No parameter was passed. Syntax: write -fileName");
+            ConColor.WriteLine("Error: No parameter was passed. Syntax: write -fileName", ConsoleColor.Red);
             return;
         }
         string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -108,15 +109,13 @@ public class WriteTXTCommand : ICommand
         try
         {
             File.WriteAllText(dataName, dict.ToString());
-            Console.WriteLine($"{ii} was created successfully");
-            Console.WriteLine(folder);
+            ConColor.WriteLine($"{ii} was created successfully", ConsoleColor.DarkGreen);
+            ConColor.WriteLine(folder, ConsoleColor.DarkGreen);
         }
         catch (Exception ex)
         {
             
-            Console.WriteLine($"Error: An error occurred while generating the {ii}.   {ex.Message}");
+            ConColor.WriteLine($"Error: An error occurred while generating the {ii}.   {ex.Message}", ConsoleColor.Red);
         }
-
-
     }
 }

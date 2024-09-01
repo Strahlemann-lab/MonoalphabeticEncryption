@@ -1,11 +1,12 @@
 ﻿
 public class DeleteCommand : ICommand
 {
+    public ConColor ConColor = new ConColor();
     public void Execute(CommandContext context, string[] parameters)
     {
         if (parameters.Length == 0)
         {
-            Console.WriteLine("Error: No parameter was passed. Syntax: delete -alphabetName");
+            ConColor.WriteLine("Error: No parameter was passed. Syntax: delete -alphabetName", ConsoleColor.Red);
             return;
         }
         string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -15,11 +16,11 @@ public class DeleteCommand : ICommand
         if (File.Exists(filePath))
         {
             File.Delete(filePath);
-            Console.WriteLine($"The alphabet '{parameters[0]}' has been deleted.");
+            ConColor.WriteLine($"The alphabet '{parameters[0]}' has been deleted.", ConsoleColor.DarkGreen);
         }
         else
         {
-            Console.WriteLine($"The alphabet '{parameters[0]}' does not exist.");
+            ConColor.WriteLine($"The alphabet '{parameters[0]}' does not exist.", ConsoleColor.DarkGreen);
         }
     }
 }

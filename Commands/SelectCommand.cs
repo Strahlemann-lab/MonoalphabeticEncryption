@@ -2,11 +2,12 @@
 
 public class SelectCommand : ICommand
 {
+    public ConColor ConColor = new ConColor();
     public void Execute(CommandContext context, string[] parameters)
     {
         if (parameters.Length == 0)
         {
-            Console.WriteLine("Error: No parameter was passed. Syntax: select -alphabetName");
+            ConColor.WriteLine("Error: No parameter was passed. Syntax: select -alphabetName", ConsoleColor.Red);
             return;
         }
         string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -28,15 +29,15 @@ public class SelectCommand : ICommand
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: When loading JSON data: '{ex.Message}'");
+                ConColor.WriteLine($"Error: When loading JSON data: '{ex.Message}'", ConsoleColor.Red);
             }
 
 
-            Console.WriteLine($"The alphabet '{parameters[0]}' has been selected.");
+            ConColor.WriteLine($"The alphabet '{parameters[0]}' has been selected.", ConsoleColor.DarkGreen);
         }
         else
         {
-            Console.WriteLine($"The alphabet '{parameters[0]}' does not exist.");
+            ConColor.WriteLine($"The alphabet '{parameters[0]}' does not exist.", ConsoleColor.DarkGreen);
         }
     }
 }

@@ -3,6 +3,7 @@ public class CommandHandler
 {
     private Dictionary<string, ICommand> commands = new Dictionary<string, ICommand>();
     private CommandContext context = new CommandContext();
+    public ConColor ConColor = new ConColor();
 
     public void RegisterCommand(string commandName, ICommand command)
     {
@@ -14,7 +15,7 @@ public class CommandHandler
         string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         if (parts.Length == 0)
         {
-            Console.WriteLine("Fehler: Kein Befehl eingegeben.");
+            ConColor.WriteLine("Error: No command entered.", ConsoleColor.Red);
             return;
         }
         string commandName = parts[0];
@@ -27,7 +28,7 @@ public class CommandHandler
                 {
                     if (!parts[i].StartsWith("-"))
                     {
-                        Console.WriteLine($"Error: Parameter '{parts[i]}' must start with '-'.");
+                        ConColor.WriteLine($"Error: Parameter '{parts[i]}' must start with '-'.", ConsoleColor.Red);
                         return;
                     }
                     parts[i] = parts[i].Substring(1);
@@ -39,7 +40,7 @@ public class CommandHandler
         }
         else
         {
-            Console.WriteLine("Unknown command: " + commandName);
+            ConColor.WriteLine("Unknown command: " + commandName, ConsoleColor.Red);
         }
     }
 }

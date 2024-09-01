@@ -5,11 +5,12 @@ using System.Reflection.Metadata;
 
 public class HelpCommand : ICommand
 {
+    public ConColor ConColor = new ConColor();
     public void Execute(CommandContext context, string[] parameters)
     {
         Console.WriteLine("-----------------------------------------------------------------------------------------------------------");
-        Console.WriteLine("MonoalphabeticEncryption - Version 1.0.4");
-        Console.WriteLine("Copyright (c) 2024 Strahlemann-lab");
+        ConColor.WriteLine("MonoalphabeticEncryption - Version 1.0.5", ConsoleColor.Blue);
+        ConColor.WriteLine("Copyright (c) 2024 Strahlemann-lab", ConsoleColor.Blue);
         Console.WriteLine("");
         Console.WriteLine("General command syntax = command -argument -parameter");
         Console.WriteLine("");

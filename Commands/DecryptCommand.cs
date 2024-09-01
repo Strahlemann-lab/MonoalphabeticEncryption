@@ -3,6 +3,7 @@ using System.Text;
 
 public class DecryptCommand : ICommand
 {
+    public ConColor ConColor = new ConColor();
     static bool AreAllCharsInDictionary(string text, Dictionary<char, char> dict)
     {
         foreach (char ch in text)
@@ -27,7 +28,7 @@ public class DecryptCommand : ICommand
     }
     public void Execute(CommandContext context, string[] parameters)
     {
-        Console.WriteLine("Text: ");
+        ConColor.WriteLine("Text: ", ConsoleColor.DarkYellow);
         string text = null;
         while (true)
         {
@@ -36,7 +37,7 @@ public class DecryptCommand : ICommand
         }
         if (context.SharedDictAlphabet == null && context.SharedDictName == null)
         {
-            Console.WriteLine("Error: no alphabet selected");
+            ConColor.WriteLine("Error: no alphabet selected");
             return;
         }
         if (!AreAllCharsInDictionary(text, context.SharedDictAlphabet))
@@ -49,13 +50,13 @@ public class DecryptCommand : ICommand
                 { }
                 else
                 {
-                    erorr.Append("'" + ch.ToString() + " ");
+                    erorr.Append("'" + ch.ToString());
                 }
             }
-            Console.WriteLine($"Error: Text contains characters '{erorr}' that do not exist in the alphabet: " + context.SharedDictName);
+            ConColor.WriteLine($"Error: Text contains characters '{erorr}' that do not exist in the alphabet: " + context.SharedDictName, ConsoleColor.Red);
             return;
         }
-        Console.WriteLine("Decrypted with: " + context.SharedDictName);
+        ConColor.WriteLine("Decrypted with: " + context.SharedDictName, ConsoleColor.DarkYellow);
         StringBuilder sb = new StringBuilder();
 
         foreach (char i in text)
@@ -70,7 +71,7 @@ public class DecryptCommand : ICommand
                 sb.Append(newLetter);
             }
         }
-        Console.WriteLine(sb);
+        ConColor.WriteLine(sb.ToString(), ConsoleColor.DarkGreen);
         context.SharedSecretText = text;
 
 

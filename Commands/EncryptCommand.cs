@@ -3,6 +3,7 @@ using System.Text;
 
 public class EncryptCommand : ICommand
 {
+    public ConColor ConColor = new ConColor();
     static Random rand = new Random();
     static bool AreAllCharsInDictionary(string text , Dictionary<char,char> dict)
     {
@@ -22,7 +23,7 @@ public class EncryptCommand : ICommand
     }
     public void Execute(CommandContext context, string[] parameters)
     {
-        Console.WriteLine("Text: ");
+        ConColor.WriteLine("Text: ");
         string text = null;
         while (true)
         {
@@ -31,7 +32,7 @@ public class EncryptCommand : ICommand
         }
         if (context.SharedDictAlphabet == null && context.SharedDictName == null)
         {
-            Console.WriteLine("Error: No alphabet selected");
+            ConColor.WriteLine("Error: No alphabet selected", ConsoleColor.Red);
             return;
         }
         if (!AreAllCharsInDictionary(text,context.SharedDictAlphabet))
@@ -46,14 +47,14 @@ public class EncryptCommand : ICommand
                     { }
                     else
                     {
-                        erorr.Append("'" + ch.ToString() + " ");
+                        erorr.Append("'" + ch.ToString());
                     }
                 }
             }
-            Console.WriteLine($"Error: Text contains characters ({erorr}) that do not exist in the alphabet: " + context.SharedDictName);
+            ConColor.WriteLine($"Error: Text contains characters ({erorr}) that do not exist in the alphabet: " + context.SharedDictName, ConsoleColor.Red);
             return;
         }
-        Console.WriteLine("\nEncrypted with: " + context.SharedDictName);
+        ConColor.WriteLine("\nEncrypted with: " + context.SharedDictName, ConsoleColor.DarkYellow);
         StringBuilder sb = new StringBuilder();
         Dictionary<int, char> allFillerDict = new Dictionary<int, char>();
         int allFiller = 1;
@@ -85,7 +86,7 @@ public class EncryptCommand : ICommand
                 }
             }
         }
-        Console.WriteLine(sb);
+        ConColor.WriteLine(sb.ToString(),ConsoleColor.DarkGreen);
         context.SharedSecretText = sb.ToString();
     }
 }
