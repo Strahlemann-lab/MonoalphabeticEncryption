@@ -147,7 +147,7 @@ public class CreateCommand : ICommand
         string dataName = parameters[0] + ".json";
         string folderPath = Path.Combine(currentDirectory, folderName, dataName);
         File.WriteAllText(folderPath, json);
-        ConColor.WriteLine(parameters[0] + " was saved.", ConsoleColor.DarkGreen);
+        ConColor.WriteLine($"'{parameters[0]}' was saved.", ConsoleColor.DarkGreen);
 
     }
 }

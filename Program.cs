@@ -2,7 +2,8 @@
 using System.ComponentModel;
 
 ConColor ConColor = new ConColor();
-ConColor.WriteLine("\nMonoalphabeticEncryption - Version 1.0.5\n", ConsoleColor.Blue);
+string Version = "Version 1.0.6";
+ConColor.WriteLine($"\nMonoalphabeticEncryption - {Version}\n", ConsoleColor.Blue);
 ConColor.WriteLine("Copyright (c) 2024 Strahlemann-lab", ConsoleColor.Blue);
 string MachineName = Environment.MachineName;
 ConColor.WriteLine("On Computer: " + MachineName + "\n", ConsoleColor.Blue);
@@ -28,6 +29,6 @@ while (true)
 {
     ConColor.Write("ME> ");
     string input = Console.ReadLine();
-    commandHandler.HandleCommand(input);
+    commandHandler.HandleCommand(input,Version);
 }
 

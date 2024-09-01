@@ -54,7 +54,7 @@ public class EncryptCommand : ICommand
             ConColor.WriteLine($"Error: Text contains characters ({erorr}) that do not exist in the alphabet: " + context.SharedDictName, ConsoleColor.Red);
             return;
         }
-        ConColor.WriteLine("\nEncrypted with: " + context.SharedDictName, ConsoleColor.DarkYellow);
+        ConColor.WriteLine($"\nEncrypted with: '{context.SharedDictName}'", ConsoleColor.DarkYellow);
         StringBuilder sb = new StringBuilder();
         Dictionary<int, char> allFillerDict = new Dictionary<int, char>();
         int allFiller = 1;

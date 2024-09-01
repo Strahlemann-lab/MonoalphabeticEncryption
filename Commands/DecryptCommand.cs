@@ -56,7 +56,7 @@ public class DecryptCommand : ICommand
             ConColor.WriteLine($"Error: Text contains characters '{erorr}' that do not exist in the alphabet: " + context.SharedDictName, ConsoleColor.Red);
             return;
         }
-        ConColor.WriteLine("Decrypted with: " + context.SharedDictName, ConsoleColor.DarkYellow);
+        ConColor.WriteLine($"Decrypted with: '{context.SharedDictName}'", ConsoleColor.DarkYellow);
         StringBuilder sb = new StringBuilder();
 
         foreach (char i in text)
@@ -73,7 +73,6 @@ public class DecryptCommand : ICommand
         }
         ConColor.WriteLine(sb.ToString(), ConsoleColor.DarkGreen);
         context.SharedSecretText = text;
-
 
     }
 }

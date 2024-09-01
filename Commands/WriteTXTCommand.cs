@@ -109,13 +109,13 @@ public class WriteTXTCommand : ICommand
         try
         {
             File.WriteAllText(dataName, dict.ToString());
-            ConColor.WriteLine($"{ii} was created successfully", ConsoleColor.DarkGreen);
+            ConColor.WriteLine($"'{ii}' was created successfully", ConsoleColor.DarkGreen);
             ConColor.WriteLine(folder, ConsoleColor.DarkGreen);
         }
         catch (Exception ex)
         {
             
-            ConColor.WriteLine($"Error: An error occurred while generating the {ii}.   {ex.Message}", ConsoleColor.Red);
+            ConColor.WriteLine($"Error: An error occurred while generating the '{ii}'.   {ex.Message}", ConsoleColor.Red);
         }
     }
 }

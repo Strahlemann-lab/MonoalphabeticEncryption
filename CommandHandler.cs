@@ -10,8 +10,9 @@ public class CommandHandler
         commands[commandName] = command;
     }
 
-    public void HandleCommand(string input)
+    public void HandleCommand(string input,string Version)
     {
+        context.SharedVersion = Version;
         string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         if (parts.Length == 0)
         {
@@ -40,7 +41,7 @@ public class CommandHandler
         }
         else
         {
-            ConColor.WriteLine("Unknown command: " + commandName, ConsoleColor.Red);
+            ConColor.WriteLine($"Unknown command: '{commandName}'", ConsoleColor.Red);
         }
     }
 }
